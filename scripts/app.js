@@ -1,13 +1,15 @@
-let rows = document.querySelectorAll("tr");
-let cells = document.querySelectorAll("td");
-let whiteCells = document.querySelectorAll(".whiteSquare");
-let playCells = document.querySelectorAll(".playSquares");
-let resetButton = document.querySelector(".resetButton");
-let clickedCell = document.querySelector(".clickedCell");
-let blackPieces = document.querySelector(".blackPieces");
-let whitePieces = document.querySelector(".whitePieces");
-let $blackPieces = $(`.blackPieces`)
+const rows = document.querySelectorAll("tr");
+const cells = document.querySelectorAll("td");
+const whiteCells = document.querySelectorAll(".whiteSquare");
+const playCells = document.querySelectorAll(".playSquares");
+const resetButton = document.querySelector(".resetButton");
+const clickedCell = document.querySelector(".clickedCell");
+const blackPieces = document.querySelector(".blackPieces");
+const whitePieces = document.querySelector(".whitePieces");
+const $blackPieces = $(`.blackPieces`);
+
 
 $blackPieces.click(function(){
-    blackPieces.classList.toggle('clickedCell')
-})
+    $(this).toggleClass('clicked')
+});
+

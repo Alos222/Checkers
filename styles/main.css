@@ -22,7 +22,7 @@ tr {
 .whiteSquare {
     background-color: white;
 }
-.clickedCell {
+.clicked {
     border: solid 1px yellow;
 }
 
@@ -31,8 +31,8 @@ tr {
 }
 
 .blackPieces {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 100%;
     background-color: black;
     cursor: pointer;
