@@ -1,7 +1,7 @@
 table {
     position: relative;
     margin: 20% 20%;
-    background-color: pink;
+    background-color: black;
 }
 
 td {
@@ -22,19 +22,34 @@ tr {
 .whiteSquare {
     background-color: white;
 }
-.clicked {
-    border: solid 1px yellow;
+
+.highlight {
+    border: solid 2px yellow;
 }
 
 .playSquares {
-    background: pink;
+    background-color: tan;
 }
 
-.blackPieces {
+.redPieces, .blackPieces {
     height: 60px;
     width: 60px;
-    border-radius: 100%;
-    background-color: black;
+    border-radius: 50%;
     cursor: pointer;
 }
 
+.redPieces {
+    background-color: red;
+}
+
+.blackPieces {
+    background-color: black;
+}
+
+.king.redPieces {
+    background-color: goldenrod;
+}
+
+.king.blackPieces {
+    background-color: royalblue;
+}
