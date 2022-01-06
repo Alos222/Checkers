@@ -1,0 +1,40 @@
+table {
+    position: relative;
+    margin: 20% 20%;
+    background-color: pink;
+}
+
+td {
+    height:75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+tr {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.whiteSquare {
+    background-color: white;
+}
+.clickedCell {
+    border: solid 1px yellow;
+}
+
+.playSquares {
+    background: pink;
+}
+
+.blackPieces {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: black;
+    cursor: pointer;
+}
+
