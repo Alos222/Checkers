@@ -1,15 +1,3 @@
-//Game State Data
-
-const board = [
-    null, 0, null, 1, null, 2, null, 3,
-    4, null, 5, null, 6, null, 7, null,
-    null, 8, null, 9, null, 10, null, 11,
-    null, null, null, null, null, null, null, null,
-    12, null, 13, null, 14, null, 15, null,
-    null, 16, null, 17, null, 18, null, 19,
-    20, null, 21, null, 22, null, 23, null
-]
-
 //DOM References
 const rows = document.querySelectorAll("tr");
 const cells = document.querySelectorAll("td");
@@ -17,43 +5,53 @@ const whiteCells = document.querySelectorAll(".whiteSquare");
 const playCells = document.querySelectorAll(".playSquares");
 const resetButton = document.querySelector(".resetButton");
 const blackPieces = document.querySelector(".blackPieces");
-const whitePieces = document.querySelector(".whitePieces");
+const redPieces = document.querySelector(".redPieces");
 const $blackPieces = $(`.blackPieces`);
+const $redPieces = $(`.redPieces`);
 const $playable = $(`.playSquares`);
-const $rows = $(`tr`)
+const $rows = $(`tr`);
+const $cells = $(`td`);
+const $gamePieces = $(`.gamePieces`);
 
 
 //player properties
-let turn = true; 
+let turn = "red"; 
 let redScore = 12;
 let blackScore = 12;
-let playerPieces; 
+let isClicked = false;
+let pieceClicked;
 
-let selectedPiece = {
-    pieceId: -1,
-    indexofBoardPiece: -1,
-    isKing: false,
-    seventhSpace: false,
-    ninthSpace: false,
-    fourteenthSpace: false,
-    eigthteenthSpace: false,
-    minusSeventhSpace: false,
-    minusNinthSpace: false,
-    minusFourteenthSpace: false,
-    minusEighteenthSpace: false
-}
 
-function isvalidMove() {
-    if($playable === null) {
-        return true;
-    }
-}
-
-$blackPieces.click(function(){
-    $(this).toggleClass('highlight')
-    if(isvalidMove === true) {
-        $()
-    }
-    
+$cells.click(function(){
+    console.log("im working kind of");
+    console.log($(this).attr('data-col') + $(this).attr('data-row') + $(this).attr('data-piece-id'));
+//selecting a piece to move
+   if(isClicked === false) {
+       isClicked = true ;
+       pieceClicked = $(this).attr('data-piece-id');
+       if($(this).hasClass('playSquares')) {
+        $(this).toggleClass('highlight');
+       }
+       if($(this).hasClass("redPieces")) {
+           $(this).toggleClass('redPieces');
+       }
+       if($(this).hasClass('blackPieces')) {
+           $(this).toggleClass('blackPieces')
+       }
+       $(this).removeAttr('data-piece-id')
+//piece is already selected, move to another place
+   } else {
+       if($(this).hasClass('playSquares')){
+        $(this).toggleClass('redPieces')
+        $(this).attr('data-piece-id', pieceClicked)
+       }
+       isClicked = false;
+       pieceClicked = "";
+   }
+   console.log("I am the piece" + " " + pieceClicked)
 });
+
+
+
+console.log(isClicked)
 
