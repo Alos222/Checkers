@@ -21,6 +21,8 @@ let blackScore = 12;
 let isClicked = false;
 let pieceClicked;
 let nextCell;
+// let validCol = checkColumn();
+// let validRow = checkRow();
 
 
 $cells.click(function () {
@@ -33,7 +35,7 @@ $cells.click(function () {
             $(this).toggleClass('highlight');
         }
         $(this).removeAttr('data-piece-id');
-        // nextCell = "";
+        nextCell = "";
         console.log(nextCell)
         //piece is already selected, move to another place
     } else {
@@ -53,7 +55,6 @@ $cells.click(function () {
         checkRow();
         checkColumn();
         isPlayableSpace();
-        console.log(`checking again` + nextCell)
         console.log(`checking if column` + checkColumn());
         console.log(`checking if row` + checkRow());
         console.log(`checking if space is playable` + isPlayableSpace());
@@ -85,6 +86,7 @@ function checkColumn() {
 function checkRow() {
     let row = parseInt(pieceClicked.attr('data-row'))
     console.log(`I am the row` + row)
+    console.log(parseInt(nextCell))
     console.log(nextCell.attr('data-row') == row + 1)
     if (pieceClicked.hasClass('redPieces')) {
         if (nextCell.attr('data-row') == row + 1) {
