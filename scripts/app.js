@@ -38,6 +38,7 @@ $cells.click(function () {
         console.log(`isValidRow: ${isValidRow}`);
         console.log(`isValidColumn: ${isValidCol}`);
         console.log(`is playable space` + ` ` + isPlayableSpace($(this)));
+        console.log(`is playable Jump space? ` + isPlayableJumpSpace($(this)));
         if ($(this).hasClass('playSquares') && isPlayableSpace($(this))) {
             nextCell = $(this)
             console.log(nextCell)
@@ -51,7 +52,23 @@ $cells.click(function () {
             }
             $(this).attr('data-piece-id', pieceClicked.attr('data-piece-id'));
             pieceClicked.removeAttr('data-piece-id');
-        } else {
+        } else if (isPlayableJumpSpace($(this)) && $(this).hasClass('playSquares')) {
+            console.log('jumping!!!!!')
+            nextCell = $(this)
+            console.log(nextCell)
+            if (pieceClicked.hasClass('redPieces')) {
+                pieceClicked.toggleClass('redPieces highlight');
+                $(this).toggleClass('redPieces');
+            }
+            if (pieceClicked.hasClass('blackPieces')) {
+                pieceClicked.toggleClass('blackPieces highlight');
+                $(this).toggleClass('blackPieces');
+            }
+            $(this).attr('data-piece-id', pieceClicked.attr('data-piece-id'));
+            pieceClicked.removeAttr('data-piece-id');
+
+        }
+        else {
             isClicked = false;
             pieceClicked.toggleClass('highlight');
         }
@@ -69,9 +86,10 @@ $cells.click(function () {
 
 
 function isPlayableSpace(targetCell) {
-    if (checkColumn(targetCell) === true && checkRow(targetCell) === true) {
+    if (checkColumn(targetCell) === true && checkRow(targetCell) === true && checkingforOtherPiece(targetCell) === false) {
         return true;
-    } else {
+    }
+    else {
         return false;
     }
 };
@@ -112,19 +130,80 @@ function checkRow(targetCell) {
     }
 };
 
-//rewrite this function to be simpler
+function checkingforOtherPiece(targetCell) {
+    // let row = parseInt(targetCell.attr('data-row'))
+ if(targetCell.hasClass('redPieces') || targetCell.hasClass('blackPieces')) {
+        console.log('does this have a red Piece: ' + targetCell.hasClass('redPiece') + 'does this have a black piece: ' + targetCell.hasClass('blackPiece'))
+    return true;
+    } 
+    return false;
+}
+
+
 function checkforWin() {
     let red = $cells.hasClass('redPieces')
     let black = $cells.hasClass('blackPieces')
     console.log('red:' + red)
     console.log('black:' + black)
-        if(red === false) {
-            $(".winLine").text("Black Player Wins!")
-        }
-        if(black === false) {
-            $(".winLine").text("Red Player Wins!")
+    if (red === false) {
+        $(".winLine").text("Black Player Wins!")
+    }
+    if (black === false) {
+        $(".winLine").text("Red Player Wins!")
+    }
+}
+
+function checkForJumpRow(targetCell) {
+    let row = parseInt(pieceClicked.attr('data-row'))
+    console.log(`I am the row` + row)
+    let targetRow = parseInt(targetCell.attr('data-row'))
+    console.log(`targetRow: ${targetRow}`);
+    // console.log(targetCell.attr('data-row') == row + 1)
+    if (pieceClicked.hasClass('redPieces')) {
+        if (targetRow == row + 2) {
+            return true;
+        } else {
+            return false;
         }
     }
+    if (pieceClicked.hasClass('blackPieces')) {
+        if (targetRow === row - 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
 
+function checkForJumpCol(targetCell) {
+    let col = parseInt(pieceClicked.attr('data-col'));
+    let targetColumn = parseInt(targetCell.attr('data-col'));
+    if (targetColumn === col - 2) {
+        return true;
+    } else if (targetColumn === col + 2) {
+        return true;
+    } else {
+        return false;
+    }
+     
+ }
+
+ function isPlayableJumpSpace(targetCell) {
+    if (checkingforOtherPiece(targetCell) === false && checkForJumpCol(targetCell) === true && checkForJumpRow(targetCell) === true) {
+        return true;
+    } else {
+        return false;
+    }
+ }
+
+ function checkforPieceJump(targetCell) {
+    let jumpCell = parseInt(targetCell.attr('data-col'))
+     if (checkColumn(jumpCell) === true && checkRow(jumpCell) === true && checkingforOtherPiece(jumpCell) === true) {
+         return true;
+     }
+     else {
+         return false;
+     }
+ }
 checkforWin()
 console.log(isClicked)
