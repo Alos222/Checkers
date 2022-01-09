@@ -1,0 +1,13 @@
+- setup
+  - set up board done 
+  - select first player
+- play
+  - click on square with piece
+  - click on square without piece
+  - update board
+  - is there a winner?
+    - yes: go to end
+    - no: switch player, keep playing
+- end
+  - show winner
+  - restart

@@ -114,23 +114,17 @@ function checkRow(targetCell) {
 
 //rewrite this function to be simpler
 function checkforWin() {
-    boardCount = $('.redPieces').length + $('.blackPieces').length
-    red = $cells.hasClass('redPieces')
-    black = $cells.hasClass('blackPieces')
+    let red = $cells.hasClass('redPieces')
+    let black = $cells.hasClass('blackPieces')
     console.log('red:' + red)
     console.log('black:' + black)
-    console.log('I am gamePieces' + boardCount)
         if(red === false) {
-            redScore = 0;
-        } else {
-            return false;
+            $(".winLine").text("Black Player Wins!")
         }
         if(black === false) {
-            blackScore = 0;
-        } else {
-            return false;
+            $(".winLine").text("Red Player Wins!")
         }
     }
 
-console.log('checkforWin:' + checkforWin());
+checkforWin()
 console.log(isClicked)
