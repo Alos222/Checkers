@@ -10,14 +10,14 @@ const $redPieces = $(`.redPieces`);
 const $playable = $(`.playSquares`);
 const $rows = $(`tr`);
 const $cells = $(`td`);
-const $gamePieces = $(`.gamePieces`);
+console.log($cells)
 
 
 //player properties
 let turn = "red";
-let redScore = 12;
-let blackScore = 12;
 let isClicked = false;
+redScore = 12;
+blackScore = 12;
 let pieceClicked;
 let nextCell;
 
@@ -76,6 +76,8 @@ function isPlayableSpace(targetCell) {
     }
 };
 
+
+//checking column that is clicked is playable
 function checkColumn(targetCell) {
     let col = parseInt(pieceClicked.attr('data-col'));
     let targetColumn = parseInt(targetCell.attr('data-col'));
@@ -87,7 +89,7 @@ function checkColumn(targetCell) {
         return false;
     }
 };
-
+//checking row that is clicked is playable
 function checkRow(targetCell) {
     let row = parseInt(pieceClicked.attr('data-row'))
     console.log(`I am the row` + row)
@@ -110,6 +112,25 @@ function checkRow(targetCell) {
     }
 };
 
+//rewrite this function to be simpler
+function checkforWin() {
+    boardCount = $('.redPieces').length + $('.blackPieces').length
+    red = $cells.hasClass('redPieces')
+    black = $cells.hasClass('blackPieces')
+    console.log('red:' + red)
+    console.log('black:' + black)
+    console.log('I am gamePieces' + boardCount)
+        if(red === false) {
+            redScore = 0;
+        } else {
+            return false;
+        }
+        if(black === false) {
+            blackScore = 0;
+        } else {
+            return false;
+        }
+    }
 
-
+console.log('checkforWin:' + checkforWin());
 console.log(isClicked)
