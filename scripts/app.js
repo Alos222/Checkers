@@ -112,7 +112,7 @@ function checkRow(targetCell) {
     let row = parseInt(pieceClicked.attr('data-row'))
     console.log(`I am the row` + row)
     let targetRow = parseInt(targetCell.attr('data-row'))
-    console.log(`targetRow: ${targetRow}`);
+    // console.log(`targetRow: ${targetRow}`);
     // console.log(targetCell.attr('data-row') == row + 1)
     if (pieceClicked.hasClass('redPieces')) {
         if (targetRow == row + 1) {
