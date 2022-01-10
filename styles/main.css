@@ -46,3 +46,6 @@ tr {
     background-color: rgb(116, 116, 116);
 }
 
+.hide {
+    display: none;
+}
